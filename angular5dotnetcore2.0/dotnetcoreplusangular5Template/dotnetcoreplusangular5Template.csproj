@@ -22,4 +22,18 @@
     <Exec Command="dotnet --version" />
   </Target>
 
+  <Target Name="Build Angular" Condition="'$(Configuration)'=='Release'" BeforeTargets="Build">
+    <Message Text="Building Angular App" Importance="high" />
+    <!--<Exec Command="npm run ./AngularApp build" />-->
+    <Exec Command="cd AngularApp &amp;&amp; npm install" />
+    <Exec Command="npm --prefix ./AngularApp run build" />
+    <ItemGroup>
+      <DistFiles Include="wwwroot\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
 </Project>
