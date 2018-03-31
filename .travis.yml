@@ -1,8 +1,11 @@
-language: csharp  
-sudo: required  
-dist: trusty 
+language: csharp 
+dist: trusty
+os: linux
+mono: none
 dotnet: 2.1.4
+before_install:
+- npm install -g npm
 install:
-  - dotnet restore ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
+- dotnet restore ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
 script:
-  - dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
+- dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
