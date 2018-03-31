@@ -8,4 +8,5 @@ before_install:
 install:
 - dotnet restore ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
 script:
-- dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
+ - dotnet --info
+ - dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln --configuration release
