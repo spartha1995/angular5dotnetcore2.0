@@ -10,3 +10,9 @@ install:
 script:
  - dotnet --info
  - dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln --configuration release
+ deploy:
+  skip_cleanup: true
+  provider: script
+  script: scripts/deploy.sh
+  on:
+    branch: master
