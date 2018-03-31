@@ -1,1 +1,21 @@
+version: 2
+jobs:
+  build: 
+    
+    steps:
+      - run:
+          name: Restore Nuget
+          command: dotnet restore ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
 
+      - run: 
+          name: Install NPM
+          command: cd ./angular5dotnetcore2.0/AngularApp && npm install
+      
+
+      - run:
+          name: Build Project
+          command: dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
+
+      - run:
+          name: Lint Project
+          command: npm run lint --prefix ./angular5dotnetcore2.0/AngularApp
