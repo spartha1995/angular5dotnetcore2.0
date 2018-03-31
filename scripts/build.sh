@@ -1,2 +1,4 @@
-dotnet restore
-dotnet publish -c release -r ubuntu.16.04-x64
+#!/bin/sh
+cd ../angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp
+dotnet publish -c Release -o published
+cd ../../../
