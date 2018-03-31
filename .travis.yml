@@ -1,7 +1,7 @@
 language: csharp  
 sudo: required  
 dist: trusty 
-dotnet: 1.0.4 
+dotnet: 2.1.4
 install:
   - dotnet restore ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
 script:
