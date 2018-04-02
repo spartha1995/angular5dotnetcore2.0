@@ -1,7 +1,5 @@
 FROM microsoft/aspnetcore:2
 WORKDIR /app
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
 COPY angular5dotnetcore2.0/dotnetcoreplusangular5Template/published  ./
 RUN dotnet restore
 # Copy everything else and build
