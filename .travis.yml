@@ -15,6 +15,6 @@ script:
  - ls -a
  - chmod +x build.sh && bash build.sh
  - docker login -u $Docker_UserName -p $Docker_Password
- - docker build --no-cache -t spartha1995/angular5dotnetcore2.0
+ - docker build --no-cache -t spartha1995/angular5dotnetcore2.0 .
  - docker tag spartha1995/angular5dotnetcore2.0:latest spartha1995/angular5dotnetcore2.0:v1
  - docker push spartha1995/angular5dotnetcore2.0
