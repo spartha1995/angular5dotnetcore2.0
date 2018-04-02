@@ -3,7 +3,9 @@ jobs:
   build: 
     docker:
       - image: circleci/node:8.4.0
-      - run:
+
+    steps:
+       - run:
           name: Restore Nuget
           command: dotnet restore ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
 
