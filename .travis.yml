@@ -14,3 +14,10 @@ script:
  - dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
  - ls -a
  - chmod +x build.sh && bash build.sh
+ after_success:
+  - docker login -e $Docker_Email -u $Docker_UserName -p $Docker_Password
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -f Dockerfile -t $Docker_Repo:$COMMIT .
+  - docker tag $REPO:$COMMIT $Docker_Repo:$TAG
+  - docker tag $REPO:$COMMIT $Docker_Repo:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
