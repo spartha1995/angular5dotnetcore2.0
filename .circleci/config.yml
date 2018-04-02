@@ -3,14 +3,9 @@ jobs:
   build:
     docker:
       - image: circleci/node:6-browsers
-      - image: microsoft/dotnet:sdk
-    environment:
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      
     steps:
       - checkout
-      - run: dotnet restore
-      - run: dotnet build
       - run: 
           name: Install NPM
           command: cd ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp && npm install && cd ../../../
