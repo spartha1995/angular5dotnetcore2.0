@@ -14,13 +14,10 @@ script:
  - dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
  - ls -a
  - chmod +x build.sh && bash build.sh
-
-before_deploy:
- - docker login -u "$Docker_UserName" -p "$Docker_Password"
- - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
- - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${version}"
-deploy:
-  provider: script
-  script: docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${version}"
-  on:
-    branch: master
+after_success:
+ - docker login -u $Docker_UserName -p $Docker_Password
+ - if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]]; then
+   docker tag $Docker_Repo:$TAG $Docker_Repo:$TRAVIS_BUILD_NUMBER;
+   docker push $Docker_Repo:$TRAVIS_BUILD_NUMBER;
+   fi 
+ - docker push $Docker_Repo:$Tag
