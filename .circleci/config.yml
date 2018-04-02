@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build: 
+    docker:
+      - image: spartha1995/angular5dotnetcore2.0
+
+    steps:
+      - checkout 
+      - setup_remote_docker
+
+      - run:
+          name: Restore Nuget
+          command: dotnet restore ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
+
+      - restore_cache:
+          key: npm-cache-{{ checksum "./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp/package.json" }}
+      - run: 
+          name: Install NPM
+          command: cd ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp && npm install && cd ../../../
+      - save_cache:
+          key: npm-cache-{{ checksum "./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp" }}
+          paths: ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp/node_modules
+
+      - run:
+          name: Build Project
+          command: dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
+
+      - run:
+          name: Lint Project
+          command: npm run lint --prefix ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp
