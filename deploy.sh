@@ -2,7 +2,7 @@
 set -ev
 
 # Create publish artifact
-dotnet publish -c Release src
+dotnet publish -c Release ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
 
 # Login to Docker Hub and upload images
 docker login -u $Docker_UserName -p $Docker_Password
