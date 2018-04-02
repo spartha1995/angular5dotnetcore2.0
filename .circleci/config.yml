@@ -1,12 +1,6 @@
 version: 2
 jobs:
   build: 
-    docker:
-      - image: spartha1995/angular5dotnetcore2.0
-
-    steps:
-      - checkout 
-      - setup_remote_docker
 
       - run:
           name: Restore Nuget
