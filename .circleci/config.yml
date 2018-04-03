@@ -10,7 +10,7 @@ jobs:
       
       - run:
           name: NPM Cli Install
-          command: 'sudo npm install -g npm@latest'
+          command: 'npm install -g npm@latest'
       
       - run: 
           name: Install NPM
