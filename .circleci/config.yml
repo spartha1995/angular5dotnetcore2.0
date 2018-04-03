@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:6-browsers
+      - image: spartha1995/angular5dotnetcore2.0
       
     steps:
       - checkout
@@ -13,7 +13,18 @@ jobs:
       - save_cache:
           key: npm-cache-{{ checksum "./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp/package.json" }}
           paths: ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp/node_modules
+          
+       - run:
+          name: NPM Build
+          command: npm run build --prefix ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp
 
       - run:
           name: Lint Project
           command: npm run lint --prefix ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp
+          
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]]; then
+             chmod +x ./deploy.sh
+             sh deploy.sh
+            fi
