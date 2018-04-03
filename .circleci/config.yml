@@ -5,7 +5,9 @@ jobs:
       - image: spartha1995/angular5dotnetcore2.0
       
     steps:
+    
       - checkout
+      
       - run: 
           name: Install NPM
           command: cd ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp && npm install && cd ../../../
@@ -14,7 +16,7 @@ jobs:
           key: npm-cache-{{ checksum "./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp/package.json" }}
           paths: ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp/node_modules
           
-       - run:
+      - run:
           name: NPM Build
           command: npm run build --prefix ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp
 
