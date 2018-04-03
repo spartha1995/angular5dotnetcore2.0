@@ -8,6 +8,10 @@ jobs:
     
       - checkout
       
+      - run:
+          name: NPM Cli Install
+          command: 'sudo npm install -g npm@latest'
+      
       - run: 
           name: Install NPM
           command: cd ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp && npm install && cd ../../../
