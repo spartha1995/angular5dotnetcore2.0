@@ -13,6 +13,10 @@ jobs:
       - save_cache:
           key: npm-cache-{{ checksum "./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp/package.json" }}
           paths: ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp/node_modules
+          
+      - run:
+          name: Build Project
+          command: npm run build --prefix ./angular5dotnetcore2.0/dotnetcoreplusangular5Template/AngularApp     
 
       - run:
           name: Lint Project
