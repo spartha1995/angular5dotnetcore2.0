@@ -11,6 +11,12 @@ using Microsoft.Extensions.DependencyInjection;
 using dotnetcoreplusangular5Template.Data;
 using dotnetcoreplusangular5Template.Models;
 using dotnetcoreplusangular5Template.Services;
+using dotnetcoreplusangular5Template.Repository.EmployeeRepo;
+using dotnetcoreplusangular5Template.Repository.DepartmentRepo;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace dotnetcoreplusangular5Template
 {
@@ -36,12 +42,23 @@ namespace dotnetcoreplusangular5Template
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            //Dependency Injection
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var db = app.ApplicationServices.GetService<ApplicationDbContext>();
+            db.Database.Migrate();
+
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //LoggerFactory.AddDebug();
+
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -54,6 +71,12 @@ namespace dotnetcoreplusangular5Template
             }
 
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.GetFullPath(Path.Combine(env.ContentRootPath, "node_modules"))),
+                RequestPath = new PathString("/node_modules")
+            });
 
             app.UseAuthentication();
 

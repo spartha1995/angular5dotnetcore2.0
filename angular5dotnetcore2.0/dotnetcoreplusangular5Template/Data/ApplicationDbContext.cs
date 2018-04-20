@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using dotnetcoreplusangular5Template.Models;
 
@@ -14,6 +10,10 @@ namespace dotnetcoreplusangular5Template.Data
             : base(options)
         {
         }
+
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
