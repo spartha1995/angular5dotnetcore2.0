@@ -14,12 +14,4 @@ script:
  - dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
  - ls -a
  - chmod +x build.sh && bash build.sh
- - chmod +x deploy.sh && bash deploy.sh 
- 
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: 
-    chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i deploy_key ubuntu@<rushi@52.171.208.23> ./deploy.sh
-  on:
-   branch: master
+ - chmod +x deploy.sh && bash deploy.sh
