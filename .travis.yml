@@ -15,3 +15,8 @@ script:
  - ls -a
  - chmod +x build.sh && bash build.sh
  - chmod +x deploy.sh && bash deploy.sh
+ deploy:
+   provider: openshift
+   user: partha.sarathi.sarkar95@gmail.com
+   password: $Docker_Password # can be encrypted
+   domain: http://demo-angular2.a3c1.starter-us-west-1.openshiftapps.com/
