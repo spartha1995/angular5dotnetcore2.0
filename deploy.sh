@@ -9,6 +9,7 @@ docker login -u $Docker_UserName -p $Docker_Password
 docker build --no-cache -t $Docker_Repo .
 docker tag $Docker_Repo:latest $Docker_Repo:$TRAVIS_BRANCH
 docker push $Docker_Repo
+#open shift
 OpenShift user: partha.sarathi.sarkar95@gmail.com
 OpenShift password: $Docker_Password
 OpenShift application name: |demo|
