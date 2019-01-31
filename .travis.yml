@@ -11,6 +11,7 @@ install:
 - dotnet restore ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
 script:
  - dotnet --info
+ - echo "$Docker_Repo"
  - dotnet build ./angular5dotnetcore2.0/dotnetcoreplusangular5Template.sln
  - ls -a
  - chmod +x build.sh && bash build.sh
