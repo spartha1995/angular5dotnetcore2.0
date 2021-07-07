@@ -9,3 +9,10 @@ docker login -u $Docker_UserName -p $Docker_Password
 docker build --no-cache -t $Docker_Repo .
 docker tag $Docker_Repo:latest $Docker_Repo:$TRAVIS_BRANCH
 docker push $Docker_Repo
+#open shift
+OpenShift user: partha.sarathi.sarkar95@gmail.com
+OpenShift password: $Docker_Password
+OpenShift application name: |demo|
+OpenShift domain: http://demo-angular2.a3c1.starter-us-west-1.openshiftapps.com/
+Deploy only from <USER>/myapp? |yes| 
+Encrypt password? |yes|
